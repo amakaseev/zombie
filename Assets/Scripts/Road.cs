@@ -8,7 +8,7 @@ public class Road : MonoBehaviour
   public float scrollSpeed = -0.5f;
   public GameObject enemyPrefab;
   public float spawnTime = 1;
-  public float enemySpeed = 1;
+  public float world2Texture = 16;
 
   private Vector2           _offset;
   private float             _timeToSpawn;
@@ -53,7 +53,7 @@ public class Road : MonoBehaviour
     for (int i = enemyCount - 1; i >=0; --i) {
       var enemy = _enemies[i];
       var position = enemy.transform.position;
-      position.x -= enemySpeed * dt;
+      position.x += world2Texture * scrollSpeed * dt;
       enemy.transform.position = position;
       if (enemy.transform.position.x < -10) {
         Destroy(enemy);
