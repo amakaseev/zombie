@@ -1,15 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour {
+
+  public bool alive = true;
   public Vector2 moveSpeed = new Vector2(5, 5);
+  public Action<string> onDie;
   Vector2 moveDirection = Vector3.zero;
+  PlayerInput _playerInput;
+
+  void Start() {
+    _playerInput = GetComponent<PlayerInput>();
+  }
 
   public void OnMove(InputValue input) {
     moveDirection = input.Get<Vector2>();
-    Debug.Log(moveDirection);
+  }
+
+  public void OnTriggerEnter2D(Collider2D other) {
+    if (other.CompareTag("Enemy")) {
+      alive = false;
+      _playerInput.enabled = false;
+      Actions.OnPlayerDie();
+    }
   }
 
   void Update() {

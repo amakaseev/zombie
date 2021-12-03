@@ -21,6 +21,8 @@ public class Road : MonoBehaviour
     _offset = _renderer.material.mainTextureOffset;
 
     ScaleToScreen();
+
+    Actions.OnPlayerDie += OnPlayerDie;
   }
 
   void ScaleToScreen() {
@@ -39,6 +41,10 @@ public class Road : MonoBehaviour
     var enemy = Instantiate(enemyPrefab);
     enemy.transform.position = new Vector3(10, Random.Range(-2f, 2f), 0);
     _enemies.Add(enemy);
+  }
+
+  void OnPlayerDie() {
+    enabled = false;
   }
 
   void Update() {
