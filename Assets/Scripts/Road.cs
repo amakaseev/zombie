@@ -8,11 +8,10 @@ public class Road : MonoBehaviour
   public float scrollSpeed = -0.5f;
   public GameObject enemyPrefab;
   public float spawnTime = 1;
-  public float world2Texture = 16;
 
   private Vector2           _offset;
   private float             _timeToSpawn;
-  private List<GameObject>  _enemies = new List<GameObject>();
+  private List<GameObject>  _roadObjects = new List<GameObject>();
   private Renderer          _renderer;
 
   void Start () {
@@ -42,18 +41,18 @@ public class Road : MonoBehaviour
 
   void SpawnEnemy() {
     var enemy = Instantiate(enemyPrefab);
-    enemy.transform.position = new Vector3(10, Random.Range(-2f, 2f), 0);
-    _enemies.Add(enemy);
+    enemy.transform.position = new Vector3(15, Random.Range(-2f, 2f), 0);
+    _roadObjects.Add(enemy);
   }
 
   void OnPlay() {
     enabled = true;
     _offset.x = 0;
-    int enemyCount = _enemies.Count;
+    int enemyCount = _roadObjects.Count;
     for (int i = enemyCount - 1; i >=0; --i) {
-      Destroy(_enemies[i]);
+      Destroy(_roadObjects[i]);
     }
-    _enemies.Clear();
+    _roadObjects.Clear();
   }
 
   void OnPlayerDie() {
@@ -68,15 +67,16 @@ public class Road : MonoBehaviour
       SpawnEnemy();
     }
 
-    int enemyCount = _enemies.Count;
-    for (int i = enemyCount - 1; i >=0; --i) {
-      var enemy = _enemies[i];
-      var position = enemy.transform.position;
+    float world2Texture = gameObject.transform.localScale.x * 10.2f;
+    int roadObjectCount = _roadObjects.Count;
+    for (int i = roadObjectCount - 1; i >=0; --i) {
+      var roadObject = _roadObjects[i];
+      var position = roadObject.transform.position;
       position.x += world2Texture * scrollSpeed * dt;
-      enemy.transform.position = position;
-      if (enemy.transform.position.x < -10) {
-        Destroy(enemy);
-        _enemies.Remove(enemy);
+      roadObject.transform.position = position;
+      if (roadObject.transform.position.x < -15) {
+        Destroy(roadObject);
+        _roadObjects.Remove(roadObject);
       }
     }
 
