@@ -22,7 +22,10 @@ public class Road : MonoBehaviour
 
     ScaleToScreen();
 
+    Actions.OnPlay += OnPlay;
     Actions.OnPlayerDie += OnPlayerDie;
+
+    enabled = false;
   }
 
   void ScaleToScreen() {
@@ -41,6 +44,16 @@ public class Road : MonoBehaviour
     var enemy = Instantiate(enemyPrefab);
     enemy.transform.position = new Vector3(10, Random.Range(-2f, 2f), 0);
     _enemies.Add(enemy);
+  }
+
+  void OnPlay() {
+    enabled = true;
+    _offset.x = 0;
+    int enemyCount = _enemies.Count;
+    for (int i = enemyCount - 1; i >=0; --i) {
+      Destroy(_enemies[i]);
+    }
+    _enemies.Clear();
   }
 
   void OnPlayerDie() {

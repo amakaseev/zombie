@@ -441,10 +441,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2650557565084669997, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 2650557565084669998, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
       propertyPath: m_Name
       value: UI
@@ -537,6 +533,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2650557565253290213, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2650557565253290219, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -547,14 +547,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650557565253290219, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
       propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4911741977039058483, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4911741977039058483, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8799717088235109945, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}

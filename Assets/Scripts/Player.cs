@@ -9,15 +9,27 @@ public class Player : MonoBehaviour {
   public bool alive = true;
   public Vector2 moveSpeed = new Vector2(5, 5);
   public Action<string> onDie;
-  Vector2 moveDirection = Vector3.zero;
+  Vector3 _startPosition;
+  Vector2 _moveDirection = Vector3.zero;
   PlayerInput _playerInput;
 
   void Start() {
+    alive = false;
+    _startPosition = transform.position;
     _playerInput = GetComponent<PlayerInput>();
+    _playerInput.enabled = false;
+
+    Actions.OnPlay += OnPlay;
   }
 
   public void OnMove(InputValue input) {
-    moveDirection = input.Get<Vector2>();
+    _moveDirection = input.Get<Vector2>();
+  }
+
+  void OnPlay() {
+    alive = true;
+    _playerInput.enabled = true;
+    transform.position = _startPosition;
   }
 
   public void OnTriggerEnter2D(Collider2D other) {
@@ -29,10 +41,10 @@ public class Player : MonoBehaviour {
   }
 
   void Update() {
-    if (moveDirection != Vector2.zero) {
+    if (_moveDirection != Vector2.zero) {
       var position = transform.position;
-      position.x += moveDirection.x * moveSpeed.x * Time.deltaTime;
-      position.y += moveDirection.y * moveSpeed.y * Time.deltaTime;
+      position.x += _moveDirection.x * moveSpeed.x * Time.deltaTime;
+      position.y += _moveDirection.y * moveSpeed.y * Time.deltaTime;
       if (position.x > 6) position.x = 6;
       if (position.x < -7) position.x = -7;
       if (position.y > 2.15f) position.y = 2.15f;
