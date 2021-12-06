@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bcd195291a5c438c9e99e151b960616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickSFX: {fileID: 8300000, guid: 70e02441ad3cd8f488092b6a4933e446, type: 3}
 --- !u!1 &4250322014768496961
 GameObject:
   m_ObjectHideFlags: 0

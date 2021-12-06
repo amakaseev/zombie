@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
+    public AudioClip clickSFX;
+
     void Awake() {
       gameObject.SetActive(true);
 
@@ -15,6 +17,7 @@ public class MainMenu : MonoBehaviour
     public void Play() {
       gameObject.SetActive(false);
       Actions.OnPlay();
+      AudioSource.PlayClipAtPoint(clickSFX, Camera.main.transform.position);
     }
 
     void OnPlayerDie() {

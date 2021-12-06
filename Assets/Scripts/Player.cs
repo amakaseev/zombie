@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
   }
 
   public void OnTriggerEnter2D(Collider2D other) {
-    if (other.CompareTag("Enemy")) {
+    if (other.CompareTag("Wall")) {
       alive = false;
       _playerInput.enabled = false;
       Actions.OnPlayerDie();

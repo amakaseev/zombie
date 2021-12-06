@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Road : MonoBehaviour
-{
+public class Road : MonoBehaviour {
 
   public float scrollSpeed = -0.5f;
-  public GameObject enemyPrefab;
+  public GameObject[] objectsPrefab;
   public float spawnTime = 1;
 
   private Vector2           _offset;
@@ -39,17 +38,17 @@ public class Road : MonoBehaviour
     gameObject.transform.localScale = new Vector3(scaleFactorX * 0.5f, gameObject.transform.localScale.y, 1);
   }
 
-  void SpawnEnemy() {
-    var enemy = Instantiate(enemyPrefab);
-    enemy.transform.position = new Vector3(15, Random.Range(-2f, 2f), 0);
-    _roadObjects.Add(enemy);
+  void SpawnRoadObject() {
+    var roadObject = Instantiate(objectsPrefab[(int)Random.Range(0, objectsPrefab.Length)]);
+    roadObject.transform.position = new Vector3(15, Random.Range(-2f, 2f), 0);
+    _roadObjects.Add(roadObject);
   }
 
   void OnPlay() {
     enabled = true;
     _offset.x = 0;
-    int enemyCount = _roadObjects.Count;
-    for (int i = enemyCount - 1; i >=0; --i) {
+    int objectsCount = _roadObjects.Count;
+    for (int i = objectsCount - 1; i >=0; --i) {
       Destroy(_roadObjects[i]);
     }
     _roadObjects.Clear();
@@ -64,7 +63,7 @@ public class Road : MonoBehaviour
     _timeToSpawn += dt;
     if (_timeToSpawn >= spawnTime) {
       _timeToSpawn -= spawnTime;
-      SpawnEnemy();
+      SpawnRoadObject();
     }
 
     float world2Texture = gameObject.transform.localScale.x * 10.2f;
