@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Road : MonoBehaviour {
+public class Road: MonoBehaviour {
+
+  public static float difficult;
 
   public float scrollSpeed = -0.5f;
   public GameObject[] objectsPrefab;
   public float spawnTime = 1;
+  public float maxDifficult = 3;
 
   private Vector2           _offset;
   private float             _timeToSpawn;
@@ -46,6 +49,8 @@ public class Road : MonoBehaviour {
 
   void OnPlay() {
     enabled = true;
+    difficult = 0;
+
     _offset.x = 0;
     int objectsCount = _roadObjects.Count;
     for (int i = objectsCount - 1; i >=0; --i) {
@@ -60,7 +65,17 @@ public class Road : MonoBehaviour {
 
   void Update() {
     var dt = Time.deltaTime;
-    _timeToSpawn += dt;
+
+    if (difficult < 1) {
+      difficult += dt * 0.2f;
+    } else {
+      difficult += dt * 0.05f;
+    }
+    if (difficult >= maxDifficult) {
+      difficult = maxDifficult;
+    }
+
+    _timeToSpawn += dt * difficult;
     if (_timeToSpawn >= spawnTime) {
       _timeToSpawn -= spawnTime;
       SpawnRoadObject();
@@ -71,7 +86,7 @@ public class Road : MonoBehaviour {
     for (int i = roadObjectCount - 1; i >=0; --i) {
       var roadObject = _roadObjects[i];
       var position = roadObject.transform.position;
-      position.x += world2Texture * scrollSpeed * dt;
+      position.x += world2Texture * scrollSpeed * dt * difficult;
       roadObject.transform.position = position;
       if (roadObject.transform.position.x < -15) {
         Destroy(roadObject);
@@ -80,7 +95,7 @@ public class Road : MonoBehaviour {
     }
 
 
-    _offset.x -= scrollSpeed * dt;
+    _offset.x -= scrollSpeed * dt * difficult;
     while (_offset.x < 0) {
       _offset.x += 1;
     }

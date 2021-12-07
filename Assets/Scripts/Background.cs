@@ -44,7 +44,7 @@ public class Background: MonoBehaviour {
 
   void Update() {
     var dt = Time.deltaTime;
-   _offset.x -= scrollSpeed * dt;
+   _offset.x -= scrollSpeed * dt * Road.difficult;
     while (_offset.x < 0) {
       _offset.x += 1;
     }
