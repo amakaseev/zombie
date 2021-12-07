@@ -547,6 +547,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198380560782952779, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGameMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 2650557565084669998, guid: 6adf5d1ae0adc47a29a6cde65167e245, type: 3}
       propertyPath: m_Name
       value: GameUI
