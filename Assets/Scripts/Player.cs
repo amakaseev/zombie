@@ -46,6 +46,8 @@ public class Player : MonoBehaviour {
       _spriteRenderer.sprite = damageSprite;
       Instantiate(damageVFX, transform);
       Actions.OnPlayerDie();
+    } else if (other.CompareTag("Zombie")) {
+      Actions.OnZombieDie();
     }
   }
 

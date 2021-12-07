@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collideSFX: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
   collideSprite: {fileID: 0}
+  maxSpeed: 0
 --- !u!61 &6993760916661882694
 BoxCollider2D:
   m_ObjectHideFlags: 0
