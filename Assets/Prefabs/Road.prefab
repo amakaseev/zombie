@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: -0.5
   objectsPrefab:
-  - {fileID: 4003128597380731532, guid: 62c5371f539664d81a84566c34a948dc, type: 3}
   - {fileID: 4003128597380731532, guid: 48232f68755854d238524795a0bbd4fa, type: 3}
+  - {fileID: 4003128597380731532, guid: 62c5371f539664d81a84566c34a948dc, type: 3}
+  - {fileID: 7245088613144507897, guid: 49172c744ebc040178d0af6c335720fc, type: 3}
   spawnTime: 1

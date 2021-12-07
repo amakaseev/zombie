@@ -8,7 +8,11 @@ public class Player : MonoBehaviour {
 
   public bool alive = true;
   public Vector2 moveSpeed = new Vector2(5, 5);
-  public Action<string> onDie;
+  public Sprite damageSprite;
+  public GameObject damageVFX;
+
+  SpriteRenderer _spriteRenderer;
+  Sprite _normalSprite;
   Vector3 _startPosition;
   Vector2 _moveDirection = Vector3.zero;
   PlayerInput _playerInput;
@@ -16,6 +20,8 @@ public class Player : MonoBehaviour {
   void Start() {
     alive = false;
     _startPosition = transform.position;
+    _spriteRenderer = GetComponent<SpriteRenderer>();
+    _normalSprite = _spriteRenderer.sprite;
     _playerInput = GetComponent<PlayerInput>();
     _playerInput.enabled = false;
 
@@ -29,6 +35,7 @@ public class Player : MonoBehaviour {
   void OnPlay() {
     alive = true;
     _playerInput.enabled = true;
+    _spriteRenderer.sprite = _normalSprite;
     transform.position = _startPosition;
   }
 
@@ -36,6 +43,8 @@ public class Player : MonoBehaviour {
     if (other.CompareTag("Wall")) {
       alive = false;
       _playerInput.enabled = false;
+      _spriteRenderer.sprite = damageSprite;
+      Instantiate(damageVFX, transform);
       Actions.OnPlayerDie();
     }
   }
