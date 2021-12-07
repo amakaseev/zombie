@@ -67,15 +67,15 @@ public class Road: MonoBehaviour {
     var dt = Time.deltaTime;
 
     if (difficult < 1) {
-      difficult += dt * 0.2f;
+      difficult += dt * 0.5f;
     } else {
-      difficult += dt * 0.05f;
+      difficult += dt * 0.025f;
     }
     if (difficult >= maxDifficult) {
       difficult = maxDifficult;
     }
 
-    _timeToSpawn += dt * difficult;
+    _timeToSpawn += dt * difficult * 2f;
     if (_timeToSpawn >= spawnTime) {
       _timeToSpawn -= spawnTime;
       SpawnRoadObject();
